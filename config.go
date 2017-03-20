@@ -39,6 +39,29 @@ func (c *Config) AddPaths(paths ...string) {
 	}
 }
 
+func (c Config) Defaults() map[string]interface{} {
+	return c.preset
+}
+
+func (c *Config) SetDefaults(values map[string]interface{}) {
+	c.preset = values
+}
+
+func (c Config) IsDefault(key string) bool {
+	value := c.Get(key)
+	defaultValue, _ := DeepGet(c.preset, key, c.separator)
+
+	if value == defaultValue {
+		return true
+	}
+
+	return false
+}
+
+func (c Config) ClearDefaults() {
+	c.preset = make(map[string]interface{})
+}
+
 // Separator return a current value that is used to split a composite key.
 //
 // Default '.'
