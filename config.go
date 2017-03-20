@@ -1,4 +1,4 @@
-// Agordo is a configuration system for your an application
+// Package agordo is a configuration system for your an application
 
 package agordo
 
@@ -10,7 +10,7 @@ import (
 
 var config = new(Config)
 
-// Config allows control a configurations of application
+// Config allows control a configurations of application.
 type Config struct {
 	conf      map[string]interface{}
 	preset    map[string]interface{}
@@ -18,17 +18,17 @@ type Config struct {
 	separator string
 }
 
-// GetConfig return a default Config object
+// GetConfig return a default Config object.
 func GetConfig() *Config {
 	return config
 }
 
-// AddLoader connect a loader to a Config object
+// AddLoader connect a loader to a Config object.
 func (c *Config) AddLoader(loader loaders.Loader) {
 	c.loaders = append(c.loaders, loader)
 }
 
-// AddPaths is a "sugar" for adding a new file loader
+// AddPaths is a "sugar" for adding a new file loader.
 func (c *Config) AddPaths(paths ...string) {
 	fl := loaders.NewFileLoader(paths...)
 	c.AddLoader(fl)
@@ -41,12 +41,12 @@ func (c *Config) AddPaths(paths ...string) {
 
 // Separator return a current value that is used to split a composite key.
 //
-// Default '.'.
+// Default '.'
 func (c *Config) Separator() string {
 	return c.separator
 }
 
-// SetSeparator sets a value of a composite key separator
+// SetSeparator sets a value of a composite key separator.
 func (c *Config) SetSeparator(sep string) {
 	c.separator = sep
 }
@@ -76,7 +76,9 @@ func (c *Config) assemble() (result map[string]interface{}) {
 // Get return a value getted by a key.
 //
 // The key can be a composite. Example: 'my.composite.key'.
-// The separator can be set using "SetSeparator". Default: '.'.
+// The separator can be set using "SetSeparator".
+//
+// Default: '.'
 func (c Config) Get(key string) interface{} {
 	value, _ := DeepGet(c.conf, key, c.separator)
 	return value

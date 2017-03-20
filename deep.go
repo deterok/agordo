@@ -29,6 +29,9 @@ func (e ValueNotMapError) Error() string {
 }
 
 // DeepGet allows get a valuef from a deeply located map by a composite key.
+//
+// Returns the corresponding error when the wrong key (KeyExistError) or
+// missing value (ValueNotMapError).
 func DeepGet(m map[string]interface{}, key, sep string) (interface{}, error) {
 	splittedKeys := strings.Split(key, sep)
 	return deepGet(m, splittedKeys)
