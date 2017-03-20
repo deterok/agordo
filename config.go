@@ -6,6 +6,7 @@ import (
 	"agordo/loaders"
 
 	"github.com/linkosmos/mapop"
+	"github.com/mitchellh/mapstructure"
 )
 
 var config = new(Config)
@@ -140,4 +141,13 @@ func (c *Config) GetFloat(key string) float32 {
 // GetFloat64 return a float64 value obtained by a key.
 func (c *Config) GetFloat64(key string) float64 {
 	return c.Get(key).(float64)
+}
+
+func (c *Config) Unmarshal(s interface{}) error {
+	return mapstructure.Decode(c.conf, s)
+}
+
+func (c *Config) UnmarshalKey(key string, s interface{}) error {
+	value := c.Get(key)
+	return mapstructure.Decode(value, s)
 }
