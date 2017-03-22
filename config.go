@@ -82,6 +82,8 @@ func (c *Config) Assemble() {
 }
 
 func (c *Config) assemble() (result map[string]interface{}) {
+	result = c.preset
+
 	for _, loader := range c.loaders {
 		confPart, err := loader.GetMap()
 
