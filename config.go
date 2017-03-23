@@ -3,7 +3,7 @@
 package agordo
 
 import (
-	"agordo/loaders"
+	"github.com/deterok/agordo/loaders"
 
 	"github.com/linkosmos/mapop"
 	"github.com/mitchellh/mapstructure"
