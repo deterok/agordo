@@ -134,8 +134,20 @@ func (c *Config) GetString(key string) string {
 
 // GetInt return a int value obtained by a key.
 func (c *Config) GetInt(key string) int {
-	value, _ := c.Get(key).(int)
-	return value
+	// TODO: add error
+	switch value := c.Get(key).(type) {
+	default:
+		return 0
+
+	case int:
+		return value
+
+	case float32:
+	case float64:
+		return int(value)
+	}
+
+	return 0
 }
 
 // GetUint return a uint value obtained by a key.
