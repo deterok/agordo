@@ -9,7 +9,7 @@ import (
 	"github.com/mitchellh/mapstructure"
 )
 
-var config = new(Config)
+var config = New()
 
 // Config allows control a configurations of application.
 type Config struct {
@@ -17,6 +17,10 @@ type Config struct {
 	preset    map[string]interface{}
 	loaders   []loaders.Loader
 	separator string
+}
+
+func New() *Config {
+	return &Config{separator: "."}
 }
 
 // GetConfig return a default Config object.
