@@ -107,6 +107,7 @@ func (c *Config) assemble() (result map[string]interface{}) {
 // Default: '.'
 func (c Config) Get(key string) interface{} {
 	value, _ := DeepGet(c.conf, key, c.separator)
+	// TODO: add error
 	return value
 }
 
@@ -117,32 +118,38 @@ func (c Config) GetAll() map[string]interface{} {
 
 // GetBool return a boolean value obtained by a key.
 func (c *Config) GetBool(key string) bool {
-	return c.Get(key).(bool)
+	value, _ := c.Get(key).(bool)
+	return value
 }
 
 // GetString return a string value obtained by a key.
 func (c *Config) GetString(key string) string {
-	return c.Get(key).(string)
+	value, _ := c.Get(key).(string)
+	return value
 }
 
 // GetInt return a int value obtained by a key.
 func (c *Config) GetInt(key string) int {
-	return c.Get(key).(int)
+	value, _ := c.Get(key).(int)
+	return value
 }
 
 // GetUint return a uint value obtained by a key.
 func (c *Config) GetUint(key string) uint {
-	return c.Get(key).(uint)
+	value, _ := c.Get(key).(uint)
+	return value
 }
 
 // GetFloat return a float32 value obtained by a key.
 func (c *Config) GetFloat(key string) float32 {
-	return c.Get(key).(float32)
+	value, _ := c.Get(key).(float32)
+	return value
 }
 
 // GetFloat64 return a float64 value obtained by a key.
 func (c *Config) GetFloat64(key string) float64 {
-	return c.Get(key).(float64)
+	value, _ := c.Get(key).(float64)
+	return value
 }
 
 func (c *Config) Unmarshal(s interface{}) error {
