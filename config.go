@@ -40,7 +40,7 @@ func (c *Config) AddPaths(paths ...string) {
 	}
 }
 
-func (c Config) Defaults() map[string]interface{} {
+func (c *Config) Defaults() map[string]interface{} {
 	return c.preset
 }
 
@@ -48,7 +48,7 @@ func (c *Config) SetDefaults(values map[string]interface{}) {
 	c.preset = values
 }
 
-func (c Config) IsDefault(key string) bool {
+func (c *Config) IsDefault(key string) bool {
 	value := c.Get(key)
 	defaultValue, _ := DeepGet(c.preset, key, c.separator)
 
@@ -59,7 +59,7 @@ func (c Config) IsDefault(key string) bool {
 	return false
 }
 
-func (c Config) ClearDefaults() {
+func (c *Config) ClearDefaults() {
 	c.preset = make(map[string]interface{})
 }
 
@@ -105,14 +105,14 @@ func (c *Config) assemble() (result map[string]interface{}) {
 // The separator can be set using "SetSeparator".
 //
 // Default: '.'
-func (c Config) Get(key string) interface{} {
+func (c *Config) Get(key string) interface{} {
 	value, _ := DeepGet(c.conf, key, c.separator)
 	// TODO: add error
 	return value
 }
 
 // GetAll return all configuration values.
-func (c Config) GetAll() map[string]interface{} {
+func (c *Config) GetAll() map[string]interface{} {
 	return c.conf
 }
 
