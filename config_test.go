@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var testJSONFixture = map[string]interface{}{
+var jsonFixture = map[string]interface{}{
 	"dev": map[string]interface{}{
 		"parametr_1": []interface{}{"test_value_1", "test_value_2", "test_value_3", "test_value_4"},
 		"parametr_2": map[string]interface{}{
@@ -26,17 +26,17 @@ var testJSONFixture = map[string]interface{}{
 
 func TestDefaultConfig(t *testing.T) {
 	conf := New()
-	conf.SetDefaults(testJSONFixture)
+	conf.SetDefaults(jsonFixture)
 	conf.Assemble()
 
 	t.Run("GetOnlyDefaults", func(t *testing.T) {
 		confMap := conf.Defaults()
-		assert.EqualValues(t, testJSONFixture, confMap)
+		assert.EqualValues(t, jsonFixture, confMap)
 	})
 
 	t.Run("GetDefaultsFromAllConfig", func(t *testing.T) {
 		confMap := conf.GetAll()
-		assert.EqualValues(t, testJSONFixture, confMap)
+		assert.EqualValues(t, jsonFixture, confMap)
 	})
 
 	t.Run("ClearDefaults", func(t *testing.T) {
@@ -63,7 +63,7 @@ func TestGetAll(t *testing.T) {
 	conf.Assemble()
 
 	confMap := conf.GetAll()
-	assert.Equal(t, testJSONFixture, confMap)
+	assert.Equal(t, jsonFixture, confMap)
 }
 
 func TestGets(t *testing.T) {
@@ -73,7 +73,7 @@ func TestGets(t *testing.T) {
 
 	t.Run("GetFirstLvl", func(t *testing.T) {
 		value := conf.Get("dev")
-		assert.Equal(t, testJSONFixture["dev"], value)
+		assert.Equal(t, jsonFixture["dev"], value)
 	})
 
 	t.Run("GetWithCompositeKey", func(t *testing.T) {
