@@ -24,6 +24,44 @@ var jsonFixture = map[string]interface{}{
 	},
 }
 
+var yamlFixture = map[string]interface{}{
+	"dev": map[interface{}]interface{}{
+		"parametr_1": []interface{}{"test_value_1", "test_value_2", "test_value_3", "test_value_4"},
+		"parametr_2": map[interface{}]interface{}{
+			"subparam_1": 1.5091,
+			"subparam_2": 0.0001,
+			"subparam_3": "0.413"},
+		"parametr_3": []interface{}{
+			map[interface{}]interface{}{"value": 1, "str": "1"},
+			map[interface{}]interface{}{"value": 2, "str": "2"},
+			map[interface{}]interface{}{"value": 3, "str": "3"},
+			map[interface{}]interface{}{"value": 4, "str": "4"},
+			map[interface{}]interface{}{"value": 5, "str": "5", "bool": true},
+		},
+		"parametr_4": true,
+	},
+}
+
+func TestLoadFiles(t *testing.T) {
+	t.Run("JSONLoad", func(t *testing.T) {
+		conf := New()
+		conf.AddPaths("tests/test_data.json")
+		conf.Assemble()
+
+		confMap := conf.GetAll()
+		assert.Equal(t, jsonFixture, confMap)
+	})
+
+	t.Run("YAMLLoad", func(t *testing.T) {
+		conf := New()
+		conf.AddPaths("tests/test_data.yaml")
+		conf.Assemble()
+
+		confMap := conf.GetAll()
+		assert.Equal(t, yamlFixture, confMap)
+	})
+}
+
 func TestDefaultConfig(t *testing.T) {
 	conf := New()
 	conf.SetDefaults(jsonFixture)
