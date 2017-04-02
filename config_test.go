@@ -106,12 +106,12 @@ func TestGetAll(t *testing.T) {
 
 func TestGets(t *testing.T) {
 	conf := New()
-	conf.AddPaths("tests/test_data.json")
+	conf.AddPaths("tests/test_data.yaml")
 	conf.Assemble()
 
 	t.Run("GetFirstLvl", func(t *testing.T) {
 		value := conf.Get("dev")
-		assert.Equal(t, jsonFixture["dev"], value)
+		assert.Equal(t, yamlFixture["dev"], value)
 	})
 
 	t.Run("GetWithCompositeKey", func(t *testing.T) {
