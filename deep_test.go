@@ -50,8 +50,10 @@ const sep = "."
 
 func TestDeepGet(t *testing.T) {
 	key := "key_2.key_2_2.key_2_2_3"
-	value, _ := DeepGet(testMap, key, sep)
-	assert.Equal(t, 223, value.(int))
+	value, err := DeepGet(testMap, key, sep)
+	if assert.NoError(t, err) {
+		assert.Equal(t, 223, value.(int))
+	}
 }
 
 func TestDeepGetByNonExistentKey(t *testing.T) {
