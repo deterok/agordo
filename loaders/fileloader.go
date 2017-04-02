@@ -51,6 +51,7 @@ func (f *FileLoader) GetMap() (map[string]interface{}, error) {
 		return f.parseINI()
 
 	default:
+		// TODO: add error
 		return map[string]interface{}{}, nil
 	}
 }
