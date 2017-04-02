@@ -25,18 +25,18 @@ var jsonFixture = map[string]interface{}{
 }
 
 var yamlFixture = map[string]interface{}{
-	"dev": map[interface{}]interface{}{
+	"dev": map[string]interface{}{
 		"parametr_1": []interface{}{"test_value_1", "test_value_2", "test_value_3", "test_value_4"},
-		"parametr_2": map[interface{}]interface{}{
+		"parametr_2": map[string]interface{}{
 			"subparam_1": 1.5091,
 			"subparam_2": 0.0001,
 			"subparam_3": "0.413"},
 		"parametr_3": []interface{}{
-			map[interface{}]interface{}{"value": 1, "str": "1"},
-			map[interface{}]interface{}{"value": 2, "str": "2"},
-			map[interface{}]interface{}{"value": 3, "str": "3"},
-			map[interface{}]interface{}{"value": 4, "str": "4"},
-			map[interface{}]interface{}{"value": 5, "str": "5", "bool": true},
+			map[string]interface{}{"value": 1, "str": "1"},
+			map[string]interface{}{"value": 2, "str": "2"},
+			map[string]interface{}{"value": 3, "str": "3"},
+			map[string]interface{}{"value": 4, "str": "4"},
+			map[string]interface{}{"value": 5, "str": "5", "bool": true},
 		},
 		"parametr_4": true,
 	},

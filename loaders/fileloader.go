@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"gopkg.in/ini.v1"
-	yaml "gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v2"
 )
 
 type FileLoader struct {
@@ -56,9 +56,20 @@ func (f *FileLoader) GetMap() (map[string]interface{}, error) {
 }
 
 func (f *FileLoader) parseYAML() (map[string]interface{}, error) {
-	var result map[string]interface{}
-	err := yaml.Unmarshal(f.data, &result)
-	return result, err
+	var parsedData map[interface{}]interface{}
+	err := yaml.Unmarshal(f.data, &parsedData)
+
+	if err != nil {
+		return nil, err
+	}
+
+	convertedData, err := convertMap(parsedData)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return convertedData, err
 }
 
 func (f *FileLoader) parseJSON() (map[string]interface{}, error) {
