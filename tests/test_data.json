@@ -4,7 +4,8 @@
         "parametr_2": {
             "subparam_1": 1.5091,
             "subparam_2": 0.0001,
-            "subparam_3": "0.413"
+            "subparam_3": -0.0001,
+            "subparam_4": "0.413"
         },
         "parametr_3": [{
                 "value": 1,

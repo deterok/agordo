@@ -12,7 +12,8 @@ var jsonFixture = map[string]interface{}{
 		"parametr_2": map[string]interface{}{
 			"subparam_1": 1.5091,
 			"subparam_2": 0.0001,
-			"subparam_3": "0.413"},
+			"subparam_3": -0.0001,
+			"subparam_4": "0.413"},
 		"parametr_3": []interface{}{
 			map[string]interface{}{"value": 1., "str": "1"},
 			map[string]interface{}{"value": 2., "str": "2"},
@@ -30,7 +31,8 @@ var yamlFixture = map[string]interface{}{
 		"parametr_2": map[string]interface{}{
 			"subparam_1": 1.5091,
 			"subparam_2": 0.0001,
-			"subparam_3": "0.413"},
+			"subparam_3": -0.0001,
+			"subparam_4": "0.413"},
 		"parametr_3": []interface{}{
 			map[string]interface{}{"value": 1, "str": "1"},
 			map[string]interface{}{"value": 2, "str": "2"},
@@ -115,7 +117,7 @@ func TestGets(t *testing.T) {
 	})
 
 	t.Run("GetWithCompositeKey", func(t *testing.T) {
-		value := conf.Get("dev.parametr_2.subparam_3")
+		value := conf.Get("dev.parametr_2.subparam_4")
 		assert.Equal(t, "0.413", value)
 	})
 
@@ -137,7 +139,7 @@ func TestGets(t *testing.T) {
 	})
 
 	t.Run("GetString", func(t *testing.T) {
-		value := conf.GetString("dev.parametr_2.subparam_3")
+		value := conf.GetString("dev.parametr_2.subparam_4")
 
 		assert.Equal(t, "0.413", value)
 
